@@ -31,15 +31,31 @@ public class MyDeq<Item> {
         end = nextIndex(end);
     }
 
+    public void addFirst(Item item) {
+        if (isFull()) {  //если в массив заполнен
+            throw new StackOverflowError();
+        }
+        if (isEmpty()) {          //если в массиве нет элементов
+            addLast(item);
+            return;
+        }
+        if (begin != 0) {
+            begin--;
+            list[begin] = item;
+            size++;
+        } else {
+            Item[] tempArr = (Item[]) new Object[list.length];
+            System.arraycopy(list,0,tempArr,1,size);
+            list = tempArr;
+            list[0] = item;
+            size++;
+            end = nextIndex(end);
+        }
+    }
+
     private int nextIndex(int index) {
         return (index +1) % list.length;
     }
-
-//    private void reCapacity(int newCapacity) {
-//        Item[] tempArr = (Item[]) new Object[newCapacity];
-//        System.arraycopy(list,0,tempArr,0,size);
-//        list = tempArr;
-//    }
 
     public Item getLast() {
         if (isEmpty()) {
@@ -56,32 +72,30 @@ public class MyDeq<Item> {
         return list[begin];
     }
 
-    public void addFirst(Item item) {
-        if (isFull()) {  //если в массив заполнен
-            throw new StackOverflowError();
+    public Item deleteLast() {
+        Item last = getLast();
+        end--;
+        list[end] = null;
+        size--;
+        if (isEmpty()) {
+            begin = 0;
+            end = 0;
         }
-        if (isEmpty()) {          //если в массиве нет элементов
-            addLast(item);
-        } else {                 //если есть элементы, то индекс begin = 0 занят
-            Item[] tempArr = (Item[]) new Object[list.length];
-            System.arraycopy(list,0,tempArr,1,size);
-            list = tempArr;
-            list[0] = item;
-            size++;
-            end = nextIndex(end);
-        }
-
-
-
-
+        return last;
     }
 
-//    private Item peek() {
-//        if (isEmpty()) {
-//            throw new EmptyStackException();
-//        }
-//        return list[size - 1];
-//    }
+    public Item deleteFirst() {
+        Item first = getFirst();
+
+        list[begin] = null;
+        size--;
+        begin++;
+        if (isEmpty()) {
+            begin = 0;
+            end = 0;
+        }
+        return first;
+    }
 
     public boolean isEmpty() {
         return size == 0;
@@ -91,4 +105,10 @@ public class MyDeq<Item> {
         return size == list.length;
     }
 
+    public void printDeq() {
+        for (int i = 0; i < list.length; i++) {
+            System.out.print(list[i] + " ");
+        }
+        System.out.println();
+    }
 }
