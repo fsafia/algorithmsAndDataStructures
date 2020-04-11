@@ -26,9 +26,25 @@ public class MyDeq<Item> {
         if (isFull()) {  //если в массив заполнен
             throw new StackOverflowError();
         }
-        list[end] = item;
-        size++;
-        end = nextIndex(end);
+
+        if (isEmpty()) {
+            list[end] = item;
+            size++;
+            return;
+        }
+
+        if(begin <= end && end == list.length - 1) {
+            Item[] tempArr = (Item[]) new Object[list.length];
+            System.arraycopy(list, begin, tempArr,begin - 1,size);
+            list = tempArr;
+            begin--;
+            list[end] = item;
+            size++;
+        } else {
+            end++;
+            list[end] = item;
+            size++;
+        }
     }
 
     public void addFirst(Item item) {
@@ -49,7 +65,7 @@ public class MyDeq<Item> {
             list = tempArr;
             list[0] = item;
             size++;
-            end = nextIndex(end);
+            end++;
         }
     }
 
@@ -61,7 +77,7 @@ public class MyDeq<Item> {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        Item last = list[end - 1];
+        Item last = list[end];
         return last;
     }
 
@@ -74,8 +90,8 @@ public class MyDeq<Item> {
 
     public Item deleteLast() {
         Item last = getLast();
-        end--;
         list[end] = null;
+        end--;
         size--;
         if (isEmpty()) {
             begin = 0;
@@ -86,7 +102,6 @@ public class MyDeq<Item> {
 
     public Item deleteFirst() {
         Item first = getFirst();
-
         list[begin] = null;
         size--;
         begin++;

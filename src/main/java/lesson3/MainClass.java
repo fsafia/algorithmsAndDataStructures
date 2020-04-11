@@ -2,31 +2,25 @@ package lesson3;
 
 public class MainClass {
     public static void main(String[] args) {
-//        BackString bs = new BackString("123456789");
-//        bs.printBackString();
+        BackString bs = new BackString("123456789");
+        System.out.println(bs.printBackString());
 
         MyDeq<String> myDeq = new MyDeq<String>(5);
-        myDeq.addLast("a");
-        myDeq.addLast("d");
-
-        myDeq.printDeq();
-
         myDeq.addFirst("A");
         myDeq.addFirst("B");
+        myDeq.addFirst("C");
+        myDeq.addFirst("D");
+        myDeq.addFirst("E");
         myDeq.printDeq();
+        System.out.println(myDeq.getLast());
 
         myDeq.deleteLast();
-        myDeq.deleteFirst();
         myDeq.printDeq();
+        myDeq.addFirst("a");
 
-        myDeq.deleteLast();
-        myDeq.deleteFirst();
         myDeq.printDeq();
+        System.out.println(myDeq.getFirst());
+        System.out.println(myDeq.getLast());
 
-        myDeq.addFirst("A");
-        myDeq.addFirst("A");
-        myDeq.deleteFirst();
-        myDeq.deleteFirst();
-        myDeq.printDeq();
     }
 }

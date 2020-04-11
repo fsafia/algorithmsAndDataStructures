@@ -22,8 +22,8 @@ public class MyStack<Item> {
         // метод вставки
     public void push(Item item) {
         if (isFull()) {
-//            throw new StackOverflowError();
-            reCapacity(size * 2);
+            throw new StackOverflowError();
+//            reCapacity(size * 2);
         }
         list[size] = item;
         size++;
