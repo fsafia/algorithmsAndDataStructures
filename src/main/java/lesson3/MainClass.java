@@ -21,6 +21,10 @@ public class MainClass {
         myDeq.printDeq();
         System.out.println(myDeq.getFirst());
         System.out.println(myDeq.getLast());
+        myDeq.addFirst("a");
+        myDeq.printDeq();
+        System.out.println(myDeq.getFirst());
+        System.out.println(myDeq.getLast());
 
     }
 }

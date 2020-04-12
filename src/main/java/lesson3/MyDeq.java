@@ -24,7 +24,8 @@ public class MyDeq<Item> {
     //метод вставки
     public void addLast(Item item) {
         if (isFull()) {  //если в массив заполнен
-            throw new StackOverflowError();
+//            throw new StackOverflowError();
+            reCapacity(size * 2);
         }
 
         if (isEmpty()) {
@@ -49,7 +50,8 @@ public class MyDeq<Item> {
 
     public void addFirst(Item item) {
         if (isFull()) {  //если в массив заполнен
-            throw new StackOverflowError();
+//            throw new StackOverflowError();
+            reCapacity(size * 2);
         }
         if (isEmpty()) {          //если в массиве нет элементов
             addLast(item);
@@ -69,9 +71,9 @@ public class MyDeq<Item> {
         }
     }
 
-    private int nextIndex(int index) {
-        return (index +1) % list.length;
-    }
+//    private int nextIndex(int index) {
+//        return (index +1) % list.length;
+//    }
 
     public Item getLast() {
         if (isEmpty()) {
@@ -119,6 +121,13 @@ public class MyDeq<Item> {
     public boolean isFull() {
         return size == list.length;
     }
+
+    private void reCapacity(int newCapacity) {
+        Item[] tempArr = (Item[]) new Object[newCapacity];
+        System.arraycopy(list,0,tempArr,0,size);
+        list = tempArr;
+    }
+
 
     public void printDeq() {
         for (int i = 0; i < list.length; i++) {
