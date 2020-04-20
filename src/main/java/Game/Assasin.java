@@ -7,8 +7,11 @@ class Assasin extends Hero {
     int cricitalHit;
     Random random = new Random();
 
-    public Assasin(int heal, String name, int damage, int addHeal) {
-        super(heal, name, damage, addHeal);
+    public Assasin(String name) {
+        super(name);
+        health = (int)(Math.random() * 50) + 101;
+        damage = (int)(Math.random() * 30) + 81;
+        addHeal = 0;
         this.cricitalHit = random.nextInt(20);
     }
 

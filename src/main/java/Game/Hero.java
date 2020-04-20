@@ -7,11 +7,8 @@ abstract class Hero {
     protected int damage;
     protected int addHeal;
 
-    public Hero(int health, String name, int damage, int addHeal) {
-        this.health = health;
+    public Hero(String name) {
         this.name = name;
-        this.damage = damage;
-        this.addHeal = addHeal;
     }
 
     abstract void hit(Hero hero);

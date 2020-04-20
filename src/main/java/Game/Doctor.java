@@ -2,8 +2,12 @@ package Game;
 
 class Doctor extends Hero {
 
-    public Doctor(int heal, String name, int damage, int addHeal) {
-        super(heal, name, damage, addHeal);
+    public Doctor(String name) {
+
+        super(name);
+        health = (int)(Math.random() * 50) + 51;
+        damage = 0;
+        addHeal = (int)(Math.random() * 20) + 101;
     }
 
     @Override

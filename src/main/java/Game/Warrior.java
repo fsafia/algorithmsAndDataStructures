@@ -2,8 +2,11 @@ package Game;
 
 class Warrior extends Hero {
 
-    public Warrior(int health, String type, int damage, int addHeal) {
-        super(health, type, damage, addHeal);
+    public Warrior( String name) {
+        super(name);
+        health = (int)(Math.random() * 100) + 201;
+        damage = (int)(Math.random() * 20) + 41;
+        addHeal = 0;
     }
 
     @Override
