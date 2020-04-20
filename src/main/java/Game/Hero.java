@@ -36,4 +36,8 @@ abstract class Hero {
 
         System.out.println(name + " " + (health < 0 ? "Герой мертвый" : health) + " " + damage);
     }
+
+    public boolean isLive() {
+        return health > 0;
+    }
 }

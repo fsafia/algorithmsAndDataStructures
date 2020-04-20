@@ -21,6 +21,7 @@ class Assasin extends Hero {
             if(health < 0) {
                 System.out.println("Герой погиб и бить не может!");
             } else {
+                System.out.println("cricitalHit =" + cricitalHit);
                 hero.causeDamage(damage + cricitalHit);
             }
             System.out.println(this.name + " нанес урон " + hero.name);
