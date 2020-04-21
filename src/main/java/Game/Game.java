@@ -1,15 +1,11 @@
 package Game;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 class Game {
     public static void main(String[] args) {
 
         Random randomStep = new Random();
-        Random randomHealing = new Random();
-        int round = 3;
-
         Hero[] team1 = new Hero[]{new Warrior("Тигрил")
                 , new Assasin("Акали")
                 , new Doctor("Жанна")};
@@ -34,57 +30,27 @@ class Game {
             if (randomStep.nextInt(2) == 0) {  //получаем значение 0 или 1
                 //значение =0 , атакует команда 1
                 System.out.println("атакует команда 1");
-                for (int i = 0; i < t1.arrayList.size(); i++) {
-                    if (t1.arrayList.get(i) instanceof Doctor) { //если это доктор?
-                        t1.arrayList.get(i).healing(t1.minHealingНего()); //добавляет здоровье для героя с миним здоровьем
-                    } else { //если не докотор
-                        if (i <= t2.arrayList.size()) { //если во второй команде не меньше i - игроков
-                            t1.arrayList.get(i).hit(t2.arrayList.get(i));
-                        } else {  // если во второй команде меньше i -игроков
-                            t1.arrayList.get(i).hit(t2.maxHealingНего()); //удар по противнику с макс здоровьем
-                        }
-                    }
-                }
 
-                for (Hero h : team2) {
-                    h.info();
-                }
+                t1.attack(t2);
+                t2.info();
 
-                t2.deleteDeadHero();
-
-                if (t2.arrayList.isEmpty()) {
+                if (t1.isWin(t2)) {
                     System.out.println("Команда 1 победила!");
                     return;
                 }
             } else {
                 //значение =1 , атакует команда 2
                 System.out.println("атакует команда 2");
-                for (int i = 0; i < t2.arrayList.size(); i++) {
-                    if (t2.arrayList.get(i) instanceof Doctor) { //если это доктор?
-                        t2.arrayList.get(i).healing(t2.minHealingНего()); //добавляет здоровье для героя с миним здоровьем
-                    } else { //если не докотор
-                        if (i <= t1.arrayList.size()) { //если во второй команде не меньше i - игроков
-                            t2.arrayList.get(i).hit(t1.arrayList.get(i));
-                        } else {  // если во второй команде меньше i -игроков
-                            t2.arrayList.get(i).hit(t1.maxHealingНего()); //удар по противнику с макс здоровьем
-                        }
-                    }
-                }
+                t2.attack(t1);
+                t1.info();
 
-                for (Hero h : team1) {
-                    h.info();
-                }
-
-                t1.deleteDeadHero();
-
-                if (t1.arrayList.isEmpty()) {
+                if (t2.isWin(t1)) {
                     System.out.println("Команда 2 победила!");
                     return;
                 }
             }
 
-            if (t1.arrayList.size() == 1 && t1.arrayList.get(0) instanceof Doctor &&
-                    t2.arrayList.size() == 1 && t2.arrayList.get(0) instanceof Doctor) {
+            if (t1.isDraw(t2)) {  //ничья
                 System.out.println("Ничья");
                 return;
             }
