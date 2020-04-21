@@ -10,21 +10,14 @@ class Game {
                 , new Assasin("Акали")
                 , new Doctor("Жанна")};
 
-        for (Hero h : team1) {
-            h.info();
-        }
-
-
         Hero[] team2 = new Hero[]{new Warrior("Минотавр")
                 , new Assasin("Джинкс")
                 , new Doctor("Зои")};
 
-        for (Hero h : team2) {
-            h.info();
-        }
-
         Team t1 = new Team(team1);
         Team t2 = new Team(team2);
+        t1.info();
+        t2.info();
 
         while (!t1.arrayList.isEmpty() && !t2.arrayList.isEmpty()) {
             if (randomStep.nextInt(2) == 0) {  //получаем значение 0 или 1
