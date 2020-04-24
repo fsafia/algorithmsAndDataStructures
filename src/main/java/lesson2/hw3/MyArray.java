@@ -55,6 +55,29 @@ public class MyArray {
         return false;
     }
 
+    public int binaryFindRec(int search) {
+        return recBinaryFind(search, 0, size-1);
+    }
+
+    private int recBinaryFind(int searchKey, int low, int high) {
+        int curIn;
+        curIn = (low + high ) / 2;
+        if (myAr[curIn] == searchKey)
+            return curIn;
+        else
+        if(low > high) {
+            throw new IndexOutOfBoundsException("Искомого элемента в массиве нет");
+        }else {
+            if(myAr[curIn] < searchKey)
+                return recBinaryFind(searchKey, curIn+1, high);
+            else
+                return recBinaryFind(searchKey, low, curIn-1);
+        }
+    }
+
+
+
+
     public void delete(int value) {
         int i;
         for (i = 0; i < size; i++) {
