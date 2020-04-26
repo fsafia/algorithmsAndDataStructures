@@ -23,7 +23,7 @@ public class MainClass {
         graph.addEdge("7", "8");
         graph.addEdge("8", "9");
         graph.addEdge("9", "10");
-        
+
         graph.addEdge("1", "5");
 
         System.out.println(graph.shortPath("1", "10"));
